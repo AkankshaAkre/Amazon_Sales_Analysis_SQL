@@ -1,0 +1,13 @@
+1] Find the total sales for each category
+2] Find the top 5 customers who made the highest profits?
+3] Find the average quantity ordered per category 
+4] Top 5 products that has generated highest revenue 
+5] Top 5 products whose revenue has decreased in comparison to previous year?
+6] Highest profitable sub category ?
+7] Find out states with highest total orders?
+8] Determine the month with the highest number of orders.
+9] Calculate the profit margin percentage for each sale (Profit divided by Sales).
+10] Calculate the percentage contribution of each sub-category to the total sales amount for the year 2023.
+11] Find the total orders and total revenue for each year.
+12] Rank products based on their revenue within each category.
+13] Identify the top-selling product in each state.
