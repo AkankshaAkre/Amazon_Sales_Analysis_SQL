@@ -2,12 +2,11 @@
 # Amazon Sales Data Analysis
 
 ## Project Overview
-This project demonstrates SQL skills by analyzing an Amazon Sales dataset. The dataset contains transactional data for a variety of products, customers, and sales performance metrics. This analysis addresses multiple business problems and provides actionable insights using SQL queries. The project is structured to showcase SQL concepts such as aggregation, filtering, window functions, Common Table Expressions (CTEs), and joins.
+This project demonstrates SQL skills by analyzing an Amazon Sales dataset. The dataset contains transactional data for a variety of products, customers, and sales performance metrics. The analysis focuses on deriving actionable insights from the dataset using SQL queries. It showcases SQL concepts such as aggregation, filtering, window functions, Common Table Expressions (CTEs), and joins.
 
 ## Files
 - **`Amazon_salesdata.csv`**: Contains the raw dataset.
-- **`Business_Problems.txt`**: Lists all the business problems solved in this project.
-- **`Amazon_Sales.sql`**: Contains the SQL queries used to solve the business problems.
+- **`Amazon_Sales.sql`**: Contains the SQL queries used for analysis and deriving insights.
 
 ## Dataset
 **File Name:** `Amazon_salesdata.csv`  
@@ -23,29 +22,24 @@ This project demonstrates SQL skills by analyzing an Amazon Sales dataset. The d
 - **quantity**: Number of items sold.
 - **profit**: Profit amount.
 
-## Business Questions Addressed
-The analysis is driven by the following business questions:
-1. **Total sales by category**: Which categories generate the highest revenue?
-2. **Top 5 profitable customers**: Who are the most profitable customers?
-3. **Average quantity ordered per category**: What is the average quantity sold for each category?
-4. **Top 5 products by revenue**: Which products generate the most revenue?
-5. **Revenue decline analysis**: Which products experienced a decline in revenue compared to the previous year?
-6. **Most profitable sub-category**: Which sub-category contributes the most profit?
-7. **States with the highest orders**: Which states place the most orders?
-8. **Month with the highest orders**: In which month are orders the highest?
-9. **Profit margin percentage**: What is the profit margin for each transaction?
-10. **Sub-category contribution to sales**: How much does each sub-category contribute to the total sales for 2023?
-11. **Annual revenue and order trends**: What are the total orders and revenue for each year?
-12. **Product ranking by revenue within categories**: How do products rank by revenue within their categories?
-13. **Top-selling product by state**: What is the top-selling product in each state?
-
 ## Key Insights
-- **Best-Selling Categories**: Identified the categories with the highest total sales.
-- **Customer Profitability**: Highlighted the top 5 customers contributing the most profit.
-- **Top Products**: Found the top-performing products by revenue and their trends over time.
-- **Geographic Trends**: Determined states with the most orders and their best-selling products.
-- **Seasonality**: Pinpointed the month with the highest number of orders.
-- **Profit Margins**: Calculated profit margin percentages to evaluate transaction efficiency.
+**Revenue and Profit Analysis:**
+- Identified top-performing categories, sub-categories, and products in terms of sales and profit.
+- Highlighted the top customers and their contribution to overall profitability.
+  
+**Geographic Trends:**
+- Determined states with the highest number of orders and revenue contributions.
+- Pinpointed state-wise best-selling products.
+  
+**Seasonal and Temporal Insights:**
+- Analyzed monthly and yearly trends to uncover peak sales periods and annual growth.
+  
+**Profitability and Contribution:**
+- Evaluated sub-category contributions to total sales.
+- Calculated profit margins to evaluate the profitability of transactions.
+  
+**Declining Performance:**
+- Identified products experiencing a revenue decline compared to the previous year.
 
 ## How to Run the Project
 1. **Setup**:
