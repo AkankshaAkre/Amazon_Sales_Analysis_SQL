@@ -69,6 +69,7 @@ SELECT
 	ROUND(SUM(sales)::numeric, 2) AS total_sales,
 	ROUND(SUM(profit)::numeric, 2) AS total_profit
 FROM amazon_sales;
+-- Insight: The total number of orders placed amounts to 9989, overall sales stand at Rs. 22,95,818.87, with a total profit of Rs. 2,86,198.76.
 
 -----------------------------------------------------------------
 ---- Category Analysis
@@ -80,6 +81,7 @@ SELECT
 FROM amazon_sales
 GROUP BY category
 ORDER BY total_sales DESC;
+-- Insight: "Technology" category garners the highest sales with Rs. 8,36,154 at Amazon
 
 -- Calculating average quantity ordered per category
 SELECT 
@@ -88,6 +90,7 @@ SELECT
 FROM amazon_sales
 GROUP BY 1
 ORDER BY 2 DESC;
+-- Insight: The "Office Supplies" category sees the highest average quantity ordered, suggesting frequent purchases in this category
 
 -----------------------------------------------------------------
 ---- Customer Analysis
@@ -100,6 +103,7 @@ FROM amazon_sales
 GROUP BY 1
 ORDER BY 2 DESC
 LIMIT 5;
+-- Insight: Customer "Aditi" contributes the most profit, with a total of Rs. 10,537
 
 -----------------------------------------------------------------
 ---- Product Insights
@@ -124,6 +128,7 @@ FROM (
   GROUP BY product_name
 ) AS ranked_products
 WHERE rank <= 5;
+-- Insight: "Canon imageCLASS 2200 Advanced Copier" stands out as the top-selling product, generating Rs. 61,599 in sales.
 
 -- Determining the most profitable sub-category 
 SELECT 
@@ -133,6 +138,7 @@ FROM amazon_sales
 GROUP BY 1
 ORDER BY 2 DESC
 LIMIT 1;
+-- Insight: The "Copiers" sub-category has emerged as the most profitable, generating a total profit of Rs. 55,617
 
 -- Detecting products with decreased revenue compared to the previous year
 WITH cy AS (
@@ -157,6 +163,7 @@ FROM cy INNER JOIN py
 ON cy.product_name = py.product_name
 WHERE cy.revenue < py.revenue
 ORDER BY rev_decrease_ratio DESC;
+-- Insight: No products showed a decrease in revenue compared to the previous year, indicating stable or improved sales performance across the product range.
 
 -- Revenue ranking of products within each category
 SELECT 
@@ -166,6 +173,9 @@ SELECT
 	RANK() OVER(PARTITION BY category ORDER BY SUM(sales) DESC) AS revenue_rank
 FROM amazon_sales
 GROUP BY category, product_name;
+-- Insight: The top performing product in the "Furniture" category is "HON 5400 Series Task Chairs for Big and Tall" with Rs. 21,870 in sales,
+-- while in the "Office Supplies" category, "Fellowes PB500 Electric Punch Plastic Comb Binding Machine with Manual Bind" leads with Rs. 27,453 in sales,
+-- and in the "Technology" category, "Canon imageCLASS 2200 Advanced Copier" dominates with Rs. 61,599 in sales.
 
 -----------------------------------------------------------------
 ---- Geographic Insights
@@ -177,6 +187,7 @@ SELECT
 FROM amazon_sales
 GROUP BY 1
 ORDER BY 2 DESC;
+-- Insight: "Andhra Pradesh" & "Tamil Nadu" lead in total orders with 403 & 402 purchases respectively, making key markets for Amazon's operation.
 
 -- Highlighting the top-selling product within each state
 SELECT 
@@ -192,7 +203,9 @@ SELECT
 FROM amazon_sales
 GROUP BY state, product_name
 ) subquery
-WHERE rank = 1;
+WHERE rank = 1
+ORDER BY total_sales DESC;
+-- Insight: "Canon imageCLASS 2200 Advanced Copier" is the top selling product across multiple states, with the highest sales of 25,199 in Assam.
 
 -----------------------------------------------------------------
 ---- Time-based Insights
@@ -204,6 +217,8 @@ SELECT
 FROM amazon_sales
 GROUP BY 1
 ORDER BY 2 DESC;
+-- Insight: "January" experiences the highest volume of orders with a total of 979 orders.
+
 -- If we want data by month and year as well
 SELECT 
 	(TO_CHAR(order_date, 'Mon') || '-' || EXTRACT(YEAR FROM order_date)) AS month_name,
@@ -211,6 +226,7 @@ SELECT
 FROM amazon_sales
 GROUP BY 1
 ORDER BY 2 DESC
+-- Insight: The month of August 2023 recorded 239 orders, marking a peak in sales activity for that specific period.
 
 -- Analyzing yearly trends for total orders and revenue
 SELECT 
@@ -220,6 +236,8 @@ SELECT
 FROM amazon_sales
 GROUP BY 1
 ORDER BY 1;
+-- Insight: 2023 showed a strong rebound with 2,502 orders and a total revenue of Rs. 620,888.70, reflecting a healthy sales growth compared to earlier years.
+-- As of February 15, 2024, the dataset includes 299 orders and Rs. 84,981.35 in revenue, reflecting a promising start to the year.
 
 -----------------------------------------------------------------
 ---- Profitability Analysis
@@ -228,7 +246,10 @@ ORDER BY 1;
 SELECT 
 	product_name,
 	ROUND((profit/ NULLIF(sales, 0)*100)::numeric, 2) AS profit_margin_percentage 
-FROM amazon_sales
+FROM amazon_sales;
+-- Insight: The profit margin for each sale varies across products, with some items showing significantly higher margins compared to others.
+-- The products with the highest profit margin percentage have a remarkable 50.02% margin, indicating highly profitable items.
+-- However, there are some products showing negative profit margins, with one as low as -275.93%, suggesting significant losses on those items. 
 
 -- Calculating sub-category contribution to total sales (for 2023)
 WITH subcategory_sales AS (
@@ -250,3 +271,5 @@ SELECT
 FROM subcategory_sales sc 
 CROSS JOIN total_sales tc
 ORDER BY percentage_contribution DESC;
+-- Insight: In 2023, the top three sub-categories contributing the most to total sales are "Machines" (14.54%), "Chairs" (13.48%), and "Phones" (12.71%). 
+-- On the other hand, sub-categories like "Fasteners", "Labels" and "Envelopes" contribute less than 1% each.
